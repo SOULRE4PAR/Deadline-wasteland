@@ -3,7 +3,7 @@ import * as THREE from 'three';
 const WORLD=180, HALF=WORLD/2, SAVE_KEY='deadline-wasteland-v1';
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x80909a);scene.fog=new THREE.Fog(0x80909a,55,170);
 const camera=new THREE.PerspectiveCamera(68,innerWidth/innerHeight,.1,500);
-const renderer=new THREE.WebGLRenderer({antialias:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;scene.add(renderer.domElement);
+const renderer=new THREE.WebGLRenderer({antialias:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;document.querySelector('#game').appendChild(renderer.domElement);
 const hemi=new THREE.HemisphereLight(0xb8c9d2,0x302b20,1.25);scene.add(hemi);const sun=new THREE.DirectionalLight(0xffe1ae,2);sun.position.set(40,80,20);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);scene.add(sun);
 const mat=c=>new THREE.MeshStandardMaterial({color:c,roughness:.9});const mats={ground:mat(0x5b6049),road:mat(0x303432),wood:mat(0x624a31),leaf:mat(0x394a35),rock:mat(0x64615a),metal:mat(0x566066),zombie:mat(0x52695b),player:mat(0xb9b6a1),car:mat(0x38484c),building:mat(0x494641)};
 const ground=new THREE.Mesh(new THREE.PlaneGeometry(WORLD,WORLD),mats.ground);ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
